@@ -1,90 +1,50 @@
-Perform a classic k-nearest neighbour computation in a map/reduce style
+Example based on https://www.michael-noll.com/tutorials/writing-an-hadoop-mapreduce-program-in-python/
 
 ## Run Mapper
 ```shell
-cat python/knn/iris.data \
- | pipenv run python python/knn/mapper.py 4.7,3.2,1.3,0.2 \ # this is where we specify the new point to classify
+echo 'hello testing one two two three three three hello' \
+ | pipenv run python python/word_count/mapper.py \
  | sort
 ```
 
 Output:
 ```
-Iris-setosa     0.0
-Iris-setosa     0.2000000000000004
-Iris-setosa     0.2999999999999998
-Iris-setosa     0.30000000000000004
-Iris-setosa     0.3999999999999999
-...
+hello   1
+testing 1
+one     1
+two     1
+two     1
+three   1
+three   1
+three   1
+hello   1
 ```
 
 ## Run Map/Reduce
 ```shell
-cat python/knn/iris.data \
- | pipenv run python python/knn/mapper.py 4.7,3.2,1.3,0.2 \
+echo 'hello testing one two two three three three hello' \
+ | pipenv run python python/word_count/mapper.py \
  | sort \
- | pipenv run python python/knn/reducer.py
+ | pipenv run python python/word_count/reducer.py
 ```
 
 Output:
-```python
-Iris-setosa     [0.0, 0.2000000000000004, 0.2999999999999998, 0.30000000000000004, 0.3999999999999999]
-Iris-versicolor [3.8, 4.0, 4.5, 4.6, 4.6000000000000005]
-Iris-virginica  [5.6000000000000005, 6.6, 6.7, 6.800000000000001, 6.800000000000001]
+```
+hello   2
+one     1
+testing 1
+three   3
+two     2
 ```
 
-## Run Map/Reduce/Map
-```shell
-cat python/knn/iris.data \
- | pipenv run python python/knn/mapper.py 4.7,3.2,1.3,0.2 \
- | sort \
- | pipenv run python python/knn/reducer.py \
- | pipenv run python python/knn/mapper_2.py
-```
-Output:
-```
-0.0     Iris-setosa
-0.2000000000000004      Iris-setosa
-0.2999999999999998      Iris-setosa
-0.30000000000000004     Iris-setosa
-0.3999999999999999      Iris-setosa
-3.8     Iris-versicolor
-4.0     Iris-versicolor
-...
-```
+# War of the Worlds
 
-## Run Map/Reduce/Map/Reduce
-
-Produces the final classification
+Words in ["War of the Worlds" by H. G. Wells](http://www.gutenberg.org/ebooks/36), ordered by most frequent last
 
 ```shell
-cat python/knn/iris.data \
- | pipenv run python python/knn/mapper.py 4.7,3.2,1.3,0.2 \
+cat python/word_count/war_of_the_worlds.txt \
+ | pipenv run python python/word_count/mapper.py \
  | sort \
- | pipenv run python python/knn/reducer.py \
- | pipenv run python python/knn/mapper_2.py \
- | sort \
- | pipenv run python python/knn/reducer_2.py
+ | pipenv run python python/word_count/reducer.py \
+ | sort -k2 -n
 ```
-
-Output: 5/5 say setosa
-```python
-[('Iris-setosa', 5)]
-```
-
-## A Different Example to Classify
-
-```shell
-cat python/knn/iris.data \
- | pipenv run python python/knn/mapper.py 1,2,3,4 \
- | sort \
- | pipenv run python python/knn/reducer.py \
- | pipenv run python python/knn/mapper_2.py \
- | sort \
- | pipenv run python python/knn/reducer_2.py
-```
-
-Output: 3/5 say versicolor
-```python
-[('Iris-versicolor', 3)]
-```
-
