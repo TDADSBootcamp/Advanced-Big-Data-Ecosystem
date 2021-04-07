@@ -10,4 +10,4 @@ for line in sys.stdin:
   words = line.split()
 
   for word in words:
-    print(f'{re.sub(r"[^a-zA-Z0-9]", "", word.lower())}\t1')
+    print(f'{re.sub(r"[^a-zA-Z0-9]", "", word)}\t1')
