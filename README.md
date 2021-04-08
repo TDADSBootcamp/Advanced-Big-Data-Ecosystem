@@ -30,9 +30,11 @@ docker run \
   -v $(pwd)/python:/work \
   hadoop \
   -input /work/word_count/war_of_the_worlds.txt \
-  -output /work/uncommitted/hadoop-output \
+  -output /work/uncommitted/hadoop-output/$(date --iso-8601=seconds) \
   -mapper 'python3 /work/word_count/mapper.py' \
   -reducer 'python3 /work/word_count/reducer.py'
 ```
 
 This will run a container based on the `hadoop` image you built, mounting the `python` directory to `/work`.
+
+:warning: the output that Hadoop will write from this container will not be owned by your user account. You will need to `sudo rm -rf python/uncommitted` to delete them.
