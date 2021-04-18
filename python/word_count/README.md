@@ -2,27 +2,25 @@ Example based on https://www.michael-noll.com/tutorials/writing-an-hadoop-mapred
 
 ## Run Mapper
 ```shell
-echo 'hello testing one two two three three three hello' \
+echo 'kitten puppy kitten puppy kitten kitten kitten' \
  | pipenv run python python/word_count/mapper.py \
  | sort
 ```
 
 Output:
 ```
-hello   1
-testing 1
-one     1
-two     1
-two     1
-three   1
-three   1
-three   1
-hello   1
+kitten  1
+kitten  1
+kitten  1
+kitten  1
+kitten  1
+puppy   1
+puppy   1
 ```
 
 ## Run Map/Reduce
 ```shell
-echo 'hello testing one two two three three three hello' \
+echo 'kitten puppy kitten puppy kitten kitten kitten' \
  | pipenv run python python/word_count/mapper.py \
  | sort \
  | pipenv run python python/word_count/reducer.py
@@ -30,11 +28,8 @@ echo 'hello testing one two two three three three hello' \
 
 Output:
 ```
-hello   2
-one     1
-testing 1
-three   3
-two     2
+kitten  5
+puppy   2
 ```
 
 # War of the Worlds
