@@ -2,9 +2,11 @@ Supports a manual walkthrough of a map/reduce operation.
 
 ## The Problem
 
+```
 As a game player
 I want to see my position on a score leaderboard
 So that I can compete with other players
+```
 
 ## The Game
 
@@ -19,7 +21,13 @@ Scores as as follows:
 Outcomes are recorded as they happen and stored in the geographically nearest available storage system to the player.
 Other details are left out for brevity.
 
-If alice has a win and a draw, bob has a win and charlie has a loss, the leaderboard result should consist of:
+If:
+- alice has played two games for a win and a draw
+- bob has played one game and won
+- charlie has player one game and lost
+
+Then the leaderboard result should be:
+
 | total_score | player  |
 |-------------|---------|
 | 12          | alice   |
