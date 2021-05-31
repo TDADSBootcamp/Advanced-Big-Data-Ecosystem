@@ -1,5 +1,20 @@
 Perform a classic k-nearest neighbour computation in a map/reduce style
 
+## KNN Algorithm for Classification
+
+Given
+- `k`, a number of neighbours to consider
+- `D`, a dataset of examples
+- `x`, an unseen datum to classify
+- `dist(a, b)`, a distance function (like Euclidian distance)
+
+Then:
+
+- for each example in `D`
+  - calculate the distance `dist(x, example)`
+  - sort the dataset by the calculated distances
+  - return the majority class of the nearest `k` distances
+
 ## Run Mapper
 ```shell
 cat python/knn/iris.data \

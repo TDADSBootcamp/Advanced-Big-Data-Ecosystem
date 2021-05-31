@@ -55,33 +55,43 @@ optional arguments:
 ```
 
 ### Example
+`pipenv run python python/awesome_game/generate_outcomes.py -p player1 -p player2 -p player3 -n 5 -s 4`
+
+
+Output:
 ```python
-pipenv run python python/awesome_game/generate_outcomes.py -p alice -p bob -p charlie -n 3 -s 5
-[('alice', 'l'), ('charlie', 'd')]
-[('bob', 'w'), ('bob', 'l')]
-[('bob', 'd'), ('alice', 'w')]
-[('charlie', 'd'), ('charlie', 'd')]
-[('alice', 'l')]
+[('player1', 'l'), ('player3', 'w'), ('player2', 'w'), ('player2', 'w')]
+[('player3', 'w'), ('player3', 'w'), ('player2', 'd'), ('player3', 'd')]
+[('player1', 'd'), ('player1', 'l'), ('player1', 'w'), ('player2', 'l')]
+[('player3', 'w'), ('player2', 'w'), ('player1', 'w')]
 ```
 
 ## Steps
 
+First, discuss how to solve the problem as a group.
+
+- At least as many players as students
+- Use [Google Worksheet](https://docs.google.com/spreadsheets/d/1j_HX9LwwB89io3GjaQupiSHoCr-h5ySkHJIbpFZochk/edit#gid=0)
+
 1. **Input** Run the script for an appropriately-size set of players and games, with `num_splits` set to produce one split per team member.
 2. **Framework (Split)**
     1. Assign one split per team member
+    2. Paste splits into Google Sheet
 3. **Mapper**
-    1. Each team member performs an appropriate mapping operation on their split, sharing the result in a Google Sheet.
+    1. Each team member performs an appropriate mapping operation on their split
+    2. They share the result in the sheet, one pair per line, same format as input
+    3. (copy your split into a text file, edit the values, drop each value onto a new line, paste back into the sheet in the reduce column)
 4. **Framework (Shuffle)**
-    1. Sort the sheet
+    1. Sort the range in the map column (pick appropriate direction)
     2. Split the results into one split per key
 5. **Reducer**
-    1. Have volunteers execute an appropriate reduce operation
+    1. Have volunteers execute an appropriate reduce operation, same process as mapper
 6. **Framework (Split)**
-    1. Assign splits as appropriate, possibly only one
+    1. Assign splits as appropriate
 7. **Mapper**
     1. Volunteer(s) perform another map operation
 8. **Framework (Shuffle)**
-    1. Sort the sheet
+    1. Sort the range in the map column (pick appropriate direction)
 9. **Reducer**
     1. Any more work to do?
 10. **Framework (Done)** 
